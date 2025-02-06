@@ -29,7 +29,7 @@ class RabbitMQPublisher:
 
         channel = pika.BlockingConnection(connection_parameters).channel()
         # Estamos criando o channel
-    
+
         return channel
 
     def send_message(self, body: dict) -> None:
