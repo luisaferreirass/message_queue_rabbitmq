@@ -1,16 +1,5 @@
 import pika
-import json
-
-
-def rabbitmq_callback(ch, method, properties, body):
-    msg = body.decode("utf-8")
-    formatted_msg = json.loads(msg)
-    # Transformando em dicionario
-    print(formatted_msg["msg"])
-
-    # Temos que tratar as mensagens que recebemos e fazemos isso com o callback
-
-
+from .callback import rabbitmq_callback
 
 class RabbitMQConsumer:
     def __init__(self):
