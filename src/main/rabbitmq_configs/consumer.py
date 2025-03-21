@@ -7,7 +7,10 @@ class RabbitMQConsumer:
         self.__port = "5672"
         self.__username = "guest"
         self.__password = "guest"
-        self.__queue = "minha_QUEUE"
+        self.__queue = "minha_queue2"
+        self.__routing_key = "1"
+        self.__exchange = "minha_exchange"
+
         self.__channel = self.create_channel()
         # Qunado instanciar um objeto dessa classe, já vai criar um channel
 
@@ -32,6 +35,10 @@ class RabbitMQConsumer:
             durable=True
         )
         # Declarando a queue na conexão
+
+        channel.queue_bind(queue=self.__queue,
+                           routing_key=self.__routing_key,
+                           exchange=self.__exchange)
 
         channel.basic_consume(
             queue=self.__queue,
