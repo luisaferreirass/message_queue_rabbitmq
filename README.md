@@ -1,39 +1,39 @@
 # 🐰 Message Queue RabbitMQ
 
-## 📝 Sobre o projeto
+## 📝 About the project
 
-Sistema de mensageria assíncrona desenvolvido com **RabbitMQ** e **Python**, implementando comunicação desacoplada entre serviços através de filas de mensagens com integração ao **Telegram**. O projeto demonstra conceitos de arquitetura baseada em eventos, processamento assíncrono e notificações em tempo real.
+Asynchronous messaging system built with **RabbitMQ** and **Python**, implementing decoupled communication between services through message queues, integrated with **Telegram**. The project demonstrates concepts of event-driven architecture, asynchronous processing and real-time notifications.
 
-Ideal para aprendizado de:
-- Message Queue (Filas de mensagens)
+Great for learning:
+- Message Queues
 - RabbitMQ - Message broker
-- Comunicação assíncrona entre serviços
-- Padrões Publisher/Subscriber
-- Arquitetura orientada a eventos
-- Integração com Telegram Bot API
-- Processamento paralelo de mensagens
-- Microserviços desacoplados
+- Asynchronous communication between services
+- Publisher/Subscriber patterns
+- Event-driven architecture
+- Telegram Bot API integration
+- Parallel message processing
+- Decoupled microservices
 
-## 🚀 Tecnologias utilizadas
+## 🚀 Technologies used
 
 - **Python 3.x**
 - **RabbitMQ** - Message broker
-- **Pika** - Cliente RabbitMQ para Python
-- **Telegram Bot API** - Envio de notificações
+- **Pika** - RabbitMQ client for Python
+- **Telegram Bot API** - Sending notifications
 - **Requests** - HTTP library
 
-## ⚙️ Como executar
+## ⚙️ How to run
 
-### Pré-requisitos
+### Prerequisites
 
-- Python 3.x instalado
-- RabbitMQ instalado e rodando
-- Bot do Telegram configurado
-- pip (gerenciador de pacotes Python)
+- Python 3.x installed
+- RabbitMQ installed and running
+- A configured Telegram bot
+- pip (Python package manager)
 
-### Instalação do RabbitMQ
+### Installing RabbitMQ
 
-**Instalação Local:**
+**Local installation:**
 ```bash
 # Ubuntu/Debian
 sudo apt-get install rabbitmq-server
@@ -41,48 +41,48 @@ sudo apt-get install rabbitmq-server
 # macOS
 brew install rabbitmq
 
-# Iniciar serviço
+# Start the service
 sudo service rabbitmq-server start
 ```
 
-**Acessar o Management Console:**
+**Access the Management Console:**
 - URL: `http://localhost:15672`
-- Usuário: `guest`
-- Senha: `guest`
+- Username: `guest`
+- Password: `guest`
 
-### Configuração do Bot do Telegram
+### Telegram Bot Setup
 
-1. Crie um bot no Telegram:
-   - Fale com [@BotFather](https://t.me/botfather)
-   - Use o comando `/newbot`
-   - Siga as instruções para criar seu bot
-   - Copie o token fornecido
+1. Create a Telegram bot:
+   - Talk to [@BotFather](https://t.me/botfather)
+   - Use the `/newbot` command
+   - Follow the instructions to create your bot
+   - Copy the token provided
 
-2. Obtenha o Chat ID:
-   - Adicione o bot ao seu grupo/canal
-   - Use [@userinfobot](https://t.me/userinfobot) para obter o chat_id
+2. Get the Chat ID:
+   - Add the bot to your group/channel
+   - Use [@userinfobot](https://t.me/userinfobot) to get the chat_id
 
-3. Configure as credenciais no código:
+3. Set the credentials in the code:
 ```python
 # src/drivers/telegram_sender.py
-token = "SEU_TOKEN_AQUI"
-chat_id = "SEU_CHAT_ID_AQUI"
+token = "YOUR_TOKEN_HERE"
+chat_id = "YOUR_CHAT_ID_HERE"
 ```
 
-### Instalação
+### Installation
 
-1. Clone o repositório:
+1. Clone the repository:
 ```bash
 git clone https://github.com/luisaferreirass/message_queue_rabbitmq.git
 cd message_queue_rabbitmq
 ```
 
-2. Crie um ambiente virtual (recomendado):
+2. Create a virtual environment (recommended):
 ```bash
 python -m venv venv
 ```
 
-3. Ative o ambiente virtual:
+3. Activate the virtual environment:
 ```bash
 # Windows
 venv\Scripts\activate
@@ -91,29 +91,29 @@ venv\Scripts\activate
 source venv/bin/activate
 ```
 
-4. Instale as dependências
+4. Install the dependencies
 
-### Executando o Consumer (Consumidor)
+### Running the Consumer
 ```bash
 python consumer.py
 ```
 
-### Executando o Publisher (Produtor)
+### Running the Publisher
 ```bash
 python publisher.py
 ```
 
-## 🎯 Funcionalidades
+## 🎯 Features
 
-- 📤 **Publisher**: Publica mensagens na fila RabbitMQ
-- 📥 **Consumer**: Consome mensagens e processa callbacks
-- 💬 **Telegram Integration**: Envia notificações automaticamente para o Telegram
-- 🔄 **Exchange-based Routing**: Roteamento de mensagens via exchange
-- ✅ **Auto Acknowledgment**: Confirmação automática de processamento
-- 🔁 **Durable Queues**: Filas persistentes que sobrevivem a reinicializações
-- 📨 **JSON Messages**: Mensagens estruturadas em formato JSON
+- 📤 **Publisher**: Publishes messages to the RabbitMQ queue
+- 📥 **Consumer**: Consumes messages and runs callbacks
+- 💬 **Telegram Integration**: Automatically sends notifications to Telegram
+- 🔄 **Exchange-based Routing**: Message routing through an exchange
+- ✅ **Auto Acknowledgment**: Automatic processing acknowledgment
+- 🔁 **Durable Queues**: Persistent queues that survive restarts
+- 📨 **JSON Messages**: Structured messages in JSON format
 
-## 🏗️ Arquitetura
+## 🏗️ Architecture
 ```
 ┌─────────────┐         ┌─────────────┐         ┌─────────────┐
 │  Publisher  │ ──────> │  RabbitMQ   │ ──────> │  Consumer   │
@@ -131,113 +131,113 @@ python publisher.py
                                                 └─────────────┘
 ```
 
-## 📮 Componentes do Sistema
+## 📮 System Components
 
-### 1. Publisher (Produtor)
-- Publica mensagens no exchange `minha_exchange`
-- Converte mensagens para formato JSON
-- Configuração de delivery mode persistente
-- Credenciais: `guest/guest` em `localhost:5672`
+### 1. Publisher (Producer)
+- Publishes messages to the `minha_exchange` exchange
+- Converts messages to JSON format
+- Persistent delivery mode configuration
+- Credentials: `guest/guest` at `localhost:5672`
 
-### 2. Consumer (Consumidor)
-- Escuta a fila `minha_queue2`
-- Binding com routing key `1`
-- Auto-acknowledgment habilitado
-- Redireciona mensagens para callback
+### 2. Consumer
+- Listens to the `minha_queue2` queue
+- Binding with routing key `1`
+- Auto-acknowledgment enabled
+- Forwards messages to the callback
 
 ### 3. Callback Handler
-- Decodifica mensagens JSON
-- Extrai o campo `msg`
-- Envia para o Telegram Sender
+- Decodes JSON messages
+- Extracts the `msg` field
+- Sends it to the Telegram Sender
 
 ### 4. Telegram Sender
-- Envia mensagens via Telegram Bot API
-- Suporta grupos e canais
-- Integração com bot configurado
+- Sends messages through the Telegram Bot API
+- Supports groups and channels
+- Integration with the configured bot
 
-## 💡 Exemplos de uso
+## 💡 Usage examples
 
-### Publicar uma mensagem
+### Publish a message
 ```python
 from src.infra.rabbitmq_publisher import RabbitMQPublisher
 
-# Criar publisher
+# Create the publisher
 publisher = RabbitMQPublisher()
 
-# Enviar mensagem
+# Send a message
 message = {
-    "msg": "🚀 Nova notificação do sistema!"
+    "msg": "🚀 New system notification!"
 }
 
 publisher.send_message(message)
-print("Mensagem enviada para a fila!")
+print("Message sent to the queue!")
 ```
 
-### Consumir mensagens
+### Consume messages
 ```python
 from src.infra.rabbitmq_consumer import RabbitMQConsumer
 
-# Criar consumer
+# Create the consumer
 consumer = RabbitMQConsumer()
 
-# Iniciar consumo
+# Start consuming
 consumer.start()
-# Output: "sistema conectado"
-# Aguardando mensagens...
+# Output: "sistema conectado" (system connected)
+# Waiting for messages...
 ```
 
-### Fluxo completo
+### Complete flow
 ```python
-# 1. Publisher envia mensagem
+# 1. Publisher sends a message
 message_body = {
-    "msg": "Pedido #1234 foi processado com sucesso!"
+    "msg": "Order #1234 was processed successfully!"
 }
 publisher.send_message(message_body)
 
-# 2. RabbitMQ roteia para a fila
+# 2. RabbitMQ routes it to the queue
 
-# 3. Consumer recebe e processa
+# 3. Consumer receives and processes it
 
-# 4. Callback extrai a mensagem
+# 4. Callback extracts the message
 
-# 5. Telegram envia notificação para o grupo/canal
+# 5. Telegram sends the notification to the group/channel
 ```
 
-## 📊 Casos de Uso
+## 📊 Use Cases
 
-### 1. Notificações de Sistema
+### 1. System Notifications
 ```
-Sistema gera alerta → Fila → Telegram notifica administradores
-```
-
-### 2. Alertas de Erro
-```
-Aplicação detecta erro → Fila → Equipe recebe notificação imediata
+System raises an alert → Queue → Telegram notifies administrators
 ```
 
-### 3. Status de Pedidos
+### 2. Error Alerts
 ```
-Pedido atualizado → Fila → Cliente recebe atualização no Telegram
-```
-
-### 4. Monitoramento
-```
-Métricas coletadas → Fila → Dashboard e alertas no Telegram
+Application detects an error → Queue → Team gets an immediate notification
 ```
 
-### 5. Workflows Automatizados
+### 3. Order Status
 ```
-Evento disparado → Fila → Múltiplas ações (DB, Email, Telegram)
+Order updated → Queue → Customer receives an update on Telegram
 ```
 
-## 🤝 Contribuindo
+### 4. Monitoring
+```
+Metrics collected → Queue → Dashboard and Telegram alerts
+```
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+### 5. Automated Workflows
+```
+Event triggered → Queue → Multiple actions (DB, Email, Telegram)
+```
 
-## 📄 Licença
+## 🤝 Contributing
 
-Este projeto está sob a licença MIT.
+Contributions are welcome! Feel free to open issues or submit pull requests.
 
-## 👩‍💻 Autora
+## 📄 License
 
-Desenvolvido por [Luisa Ferreira](https://github.com/luisaferreirass)
+This project is licensed under the MIT License.
+
+## 👩‍💻 Author
+
+Developed by [Luisa Ferreira](https://github.com/luisaferreirass)
